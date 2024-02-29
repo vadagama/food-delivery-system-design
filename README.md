@@ -1,7 +1,7 @@
-# Food delivery Service System Design - Phase 2 "Local Market"
+# Food delivery Service System Design - Phase 3 "Global Market"
 
 ## Table of contents
-- [Food delivery Service System Design - Phase 2 "Local Market"](#food-delivery-service-system-design---phase-2-local-market)
+- [Food delivery Service System Design - Phase 3 "Global Market"](#food-delivery-service-system-design---phase-3-global-market)
   - [Table of contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Forecast](#forecast)
@@ -13,8 +13,8 @@
 - [Key requirements (Architectural drivers)](#key-requirements-architectural-drivers)
   - [Solution strategy](#solution-strategy)
     - [Phase №1 “MVP” - Done](#phase-1-mvp---done)
-    - [Phase №2 “Local market” - We are here](#phase-2-local-market---we-are-here)
-    - [Phase №3 “Global market” - Our next step](#phase-3-global-market---our-next-step)
+    - [Phase №2 “Local market” - Done](#phase-2-local-market---done)
+    - [Phase №3 “Global market” - We are here](#phase-3-global-market---we-are-here)
   - [Business requirements](#business-requirements)
   - [Capacity Estimates](#capacity-estimates)
   - [Key Architectural Characteristics](#key-architectural-characteristics)
@@ -54,6 +54,8 @@
   - [ADR-8 Caching](#adr-8-caching)
 - [Constants](#constants)
   - [Data](#data)
+
+
 
 
 ## Introduction
@@ -231,7 +233,7 @@ _Ни один ресторан не назвал эту услугу самой
 Необходимо использовать надежные средства защиты для обработки платежей, чтобы обеспечить безопасность данных пользователей. Это защитит пользователей и повысит доверие к вашему приложению для доставки еды.
 
 
-### Phase №2 “Local market” - We are here
+### Phase №2 “Local market” - Done
 
 Чтобы создать успешную платформу доставки еды, нам нужен надежный план. Ниже приведен список шагов Фазы №2 проекта.
 
@@ -258,7 +260,7 @@ _Ни один ресторан не назвал эту услугу самой
 На данном шаге наша система не покрыта нормальной документацией, поскольку для стадии MVP в этом нет острой необходимости. Команда небольшая и кодовая база также понятна. На втором шаге возможно масштабирование команды и подключение партнеров и сторонних команд к проекту, поэтому хорошая документация становится необходимым условием работы.
 
 
-### Phase №3 “Global market” - Our next step
+### Phase №3 “Global market” - We are here
 
 Чтобы создать успешную платформу доставки еды, нам нужен надежный план. Ниже приведен список шагов Фазы №3 проекта.
 
