@@ -1,7 +1,7 @@
-# Food delivery Service System Design
+# Food delivery Service System Design - Phase 2 "Local Market"
 
 ## Table of contents
-- [Food delivery Service System Design](#food-delivery-service-system-design)
+- [Food delivery Service System Design - Phase 2 "Local Market"](#food-delivery-service-system-design---phase-2-local-market)
   - [Table of contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Forecast](#forecast)
@@ -12,9 +12,9 @@
   - [Customer journey](#customer-journey)
 - [Key requirements (Architectural drivers)](#key-requirements-architectural-drivers)
   - [Solution strategy](#solution-strategy)
-    - [Phase №1 “MVP”](#phase-1-mvp)
-    - [Phase №2 “Local market”](#phase-2-local-market)
-    - [Phase №3 “Global market”](#phase-3-global-market)
+    - [Phase №1 “MVP” - Done](#phase-1-mvp---done)
+    - [Phase №2 “Local market” - We are here](#phase-2-local-market---we-are-here)
+    - [Phase №3 “Global market” - Our next step](#phase-3-global-market---our-next-step)
   - [Business requirements](#business-requirements)
   - [Capacity Estimates](#capacity-estimates)
   - [Key Architectural Characteristics](#key-architectural-characteristics)
@@ -26,7 +26,6 @@
   - [Out of the box](#out-of-the-box)
   - [Application flow](#application-flow)
   - [Data Model](#data-model)
-- [Data Model](#data-model-1)
   - [Understanding the scale of data](#understanding-the-scale-of-data)
 - [Technology Stack](#technology-stack)
   - [Mobile applications](#mobile-applications)
@@ -53,6 +52,9 @@
   - [ADR-6 Notification Gateway](#adr-6-notification-gateway)
   - [ADR-7 Replication \& Fault Tolerance](#adr-7-replication--fault-tolerance)
   - [ADR-8 Caching](#adr-8-caching)
+- [Constants](#constants)
+  - [Data](#data)
+
 
 ## Introduction
 
@@ -190,7 +192,7 @@ _Ни один ресторан не назвал эту услугу самой
 ## Solution strategy
 
 
-### Phase №1 “MVP”
+### Phase №1 “MVP” - Done
 
 Чтобы создать успешную платформу доставки еды, нам нужен надежный план. Ниже приведен перечень шагов для реализации фазы №1.
 
@@ -229,7 +231,7 @@ _Ни один ресторан не назвал эту услугу самой
 Необходимо использовать надежные средства защиты для обработки платежей, чтобы обеспечить безопасность данных пользователей. Это защитит пользователей и повысит доверие к вашему приложению для доставки еды.
 
 
-### Phase №2 “Local market”
+### Phase №2 “Local market” - We are here
 
 Чтобы создать успешную платформу доставки еды, нам нужен надежный план. Ниже приведен список шагов Фазы №2 проекта.
 
@@ -256,7 +258,7 @@ _Ни один ресторан не назвал эту услугу самой
 На данном шаге наша система не покрыта нормальной документацией, поскольку для стадии MVP в этом нет острой необходимости. Команда небольшая и кодовая база также понятна. На втором шаге возможно масштабирование команды и подключение партнеров и сторонних команд к проекту, поэтому хорошая документация становится необходимым условием работы.
 
 
-### Phase №3 “Global market”
+### Phase №3 “Global market” - Our next step
 
 Чтобы создать успешную платформу доставки еды, нам нужен надежный план. Ниже приведен список шагов Фазы №3 проекта.
 
@@ -586,21 +588,19 @@ Keycloak - это открытое программное обеспечение
 
 ## Data Model
 
-Выбор базы данных обычно зависит от объема хранимых данных, удобства масштабирования, степени структурированности данных, удобства репликации и ряда других факторов. В соответствии с требованиями ACID (Atomicity, Consistency, Isolation, Durability) на данном этапе реляционная база данных предпочтительнее NoSQL-аналога. Мы можем на старте хранить неструктурированные объекты в реляционной БД в виде JSON. При повышении объемов хранимой информации и декомпозиции монолита на микросервисы, можно пересмотреть данный подход.
-
-Базы данных обычно получают больше запросов на чтение, чем на запись. Реплика чтения - это копия основной базы данных, используемая специально для обработки запросов на чтение.
-
-![alt_text](images/database_diagram.png "image_tooltip")
+![alt_text](images/database_diagram_2.png "image_tooltip")
 
 
 [https://databasediagram.com/app](https://databasediagram.com/app)
 
 
-# Data Model
+На рисунке выше представлен вариант разделение БД монолита на отдельные хранилища для каждого микросервиса (каждый цвет соответствует отдельному микросервису). Выбор базы данных для каждого микросервиса будет обусловлен объемом хранимых данных, удобства масштабирования, степени структурированности данных, удобства репликации и ряда других факторов. 
 
-Выбор базы данных обычно зависит от объема хранимых данных, удобства масштабирования, степени структурированности данных, удобства репликации и ряда других факторов. В соответствии с требованиями ACID (Atomicity, Consistency, Isolation, Durability) на данном этапе реляционная база данных предпочтительнее NoSQL-аналога. Мы можем на старте хранить неструктурированные объекты в реляционной БД в виде JSON. При повышении объемов хранимой информации и декомпозиции монолита на микросервисы, можно пересмотреть данный подход.
+На данном этапе планируется использовать три вида СУБД:
+1) PostgreSQL для транзакций и структурированных данных
+2) MongoDB - для слабоструктурированных данных
+3) Clickhouse - колоночная СУБД для аналитики
 
-Базы данных обычно получают больше запросов на чтение, чем на запись. Реплика чтения - это копия основной базы данных, используемая специально для обработки запросов на чтение.
 
 
 ## Understanding the scale of data
@@ -627,17 +627,18 @@ Keycloak - это открытое программное обеспечение
 
 
 
-* Профили клиентов, курьеров и менеджеров ресторанов: 1176 GiB
-* Данные о ресторанах и меню: 3576 GiB
+* Профили клиентов, курьеров и менеджеров ресторанов: 1148 GiB
+* Данные о ресторанах и меню: 28 GiB
 * Данные о блюдах: 46 GiB
 * Данные о курьерах: 588 MiB
 * Данные о заказах: 396 GiB
 * Данные нотификаций: 26 GiB
 * Данные для аналитики: 217 GiB
-* Итого: 12 TiB
-* + Репликация данных 3х: 36 TiB
+* Итого: 5,7 TiB
+* **plus** Репликация данных 3х: 17 TiB
+  
+Примерный объем хранимой информации за 5 лет: 85 TiB + 10% = 90 TiB
 
-Примерный объем хранимой информации за 5 лет: 36 TiB + 10% = 189 TiB
 
 
 # Technology Stack
@@ -1182,3 +1183,78 @@ AMQP, JSON
 Данные, основанные на последних заказах в районе, или наиболее часто заказываемых блюдах, или искомых объектах, могут кэшироваться, чтобы Restaurant Service мог отдавать такую информацию из  кэша, а не СУБД, и немедленно возвращать несколько рекомендаций. Изображения ресторанов и блюд также можно кэшировать, вместо того чтобы постоянно обращаться к объектному хранилищу. В кэше будут храниться популярные или наиболее часто заказываемые пункты меню/рестораны в конкретном районе, и экран поиска должен показывать эти варианты по умолчанию. Использование кэша определенно ускоряет просмотр результатов поиска.
 
 Одними из популярных технологий кэширования, доступных на рынке, являются Redis, и Memcached. Стратегией вытеснения кэша в нашем случае может быть алгоритм наименее часто используемого (LRU) или наименее часто используемого (LFU), либо их комбинация. 
+
+# Constants
+
+
+## Data
+
+The numbers vary depending on the language and implementation.
+
+
+
+* char: 1B (8 bits)
+* char (Unicode): 2B (16 bits)
+* short: 2B (16 bits)
+* Int: 4B (32 bits)
+* double: 4B (32 bits)
+* long: 8B (64 bits)
+* UUID/GUID: 16B
+
+**Objects**
+
+
+
+* File: 100 KB
+* Web Page: 100 KB (not including images)
+* Picture: 200 KB
+* Short Posted Video: 2MB
+* Steaming Video: 50MB per minute
+* Long/Lat: 8B
+
+**Cost of Operations**
+
+
+
+* Read sequentially from HDD: 30 MB/s
+* Read sequentially from SSD: 1 GB/s
+* Read sequentially from memory: 4 GB/s
+* Read sequentially from 1Gbps Ethernet: 100MB/s
+* Cross continental network: 6–7 world-wide round trips per second
+
+**S3 Storage**
+
+
+
+* Storage: 20TB
+* Connections: 30K
+* Requests: 25K per second
+
+**SQL Databases**
+
+
+
+* Storage: 60TB
+* Connections: 30K
+* Requests: 25K per second
+
+**Cache**
+
+
+
+* Storage: 300 GB
+* Connections: 10k
+* Requests: 100k per second
+
+**Web Servers**
+
+
+
+* Requests: 5–10k requests per second
+
+**Queues/Streams**
+
+
+
+* Requests: 1000–3000 requests/s
+* Throughput: 1MB-50MB/s (Write) / 2MB-100MB/s (Read)
