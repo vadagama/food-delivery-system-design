@@ -348,48 +348,19 @@ _Ни один ресторан не назвал эту услугу самой
 
 ## Capacity Estimates
 
-Ниже перечислены глобальные ограничения для решения для фазы "Local", которые определяют все компромиссные решения:
+Ниже перечислены глобальные ограничения для решения для фазы "Global", которые определяют все компромиссные решения:
 
 
-
-* **NFR-B1**: Общая база клиентов "Билайн" - около 20 млн.
-* **NFR-B2**: Потенциальные клиенты службы доставки еды - около 2М
-* **NFR-B3**: Активные пользователи сервиса - около 500K
-* **NFR-B4**: Предположим, мы обслуживаем пользователей в 20 городах.
-* **NFR-B5**: В среднем в каждом городе может быть 200 ресторанов.
-* **NFR-B6**: Общее количество ресторанов: 4K
-* **NFR-B7**: В каждом ресторане может быть 30 блюд, которые могут быть поданы.
-* **NFR-B8**: Общее количество блюд = 4000 * 30 = 120K
-* **NFR-B9**: Общее количество агентов доставки: 1K
-* **NFR-B10**: Средний чек - 4500 тенге
-* **NFR-B11**: Каждый клиент в среднем делает 1 заказ в день, то количество заказов в день = 500К
-* **NFR-B12**: Как долго хранить информацию о клиентах - 5 лет
-* **NFR-B13**: Как долго хранить информацию о ресторанах и меню - 3 года
-* **NFR-B14**: Как долго хранить информацию о заказах - 5 год
-* **NFR-B15**: Пиковое время заказов обычно зависит от дня недели. Например, в выходные дни может быть больше заказов, чем в будни. Пиковое время может приходиться на полдень или обед в каждом регионе. Пик - это 200 тыс. заказов в час.
-* **NFR-B16**: В целом, поиск меню/ресторанов будет связан с чтением, а функции заказа - с записью. Вероятность того, что клиенты будут просматривать прошлые заказы после того, как они были доставлены и еда была съедена, очень мала.
-* **NFR-B17**: Доступность системы должна составлять 99,9 %
+* **NFR-B1**: Общая база клиентов - около 100 млн.
+* **NFR-B2**: Потенциальные клиенты службы доставки еды - около 30М
+* **NFR-B3**: Активные пользователи сервиса - около 2.5M
 
 
 ## Key Architectural Characteristics
 
 Ключевые архитектурные характеристики, которые были определены на этапе развития платформы в нескольких городах Казахстана, помогают нам определить общий архитектурный стиль. Три наиболее важные характеристики выделены жирным шрифтом:
 
-* **Agility ++**
-* **Scalability ++**
-* Availability +
-* Performance
-* Interoperability
-* Usability
-* Reusability
-* Maintainability
-* **Modularity ++**
-* Data Integrity
-* Security +
-* Cost
-* Configurability
-* Fault Tolerance +
-* Simplicity
+**To be DONE**
 
 Выделенные выше ключевые архитектурные характеристики позволяют определить наиболее подходящий архитектурный стиль на данном этапе.
 
@@ -931,11 +902,115 @@ AMQP, JSON
 
 ## Description
 
-На этапе работы на локальном рынке используется средства виртуализации на базе VMWare для систем хранения данных и обмена сообщениями, а также кластер K8S для контейнеризации приложений.
+В таблице ниже приведен список элементов инфраструктуры, необходимых для реализации проекта на инфраструктуре облачного провайдера AWS.
 
-Оркестрация контейнеров реализована в K8S, настроены средства автоматического масштабирования в случае повышения нагрузки на систему.
 
-Для систем хранения данных и систем обмена сообщениями предусмотрена репликации.
+<table>
+  <tr>
+   <td><strong>Name of service</strong>
+   </td>
+   <td><strong>Provider</strong>
+   </td>
+   <td><strong>Description</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Application Load Balancer
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/network-firewall">AWS Network Firewall </a>is a managed service that makes it easy to deploy essential network protections for all of your Amazon Virtual Private Clouds (VPCs)
+   </td>
+  </tr>
+  <tr>
+   <td>Route 53
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/route53">Amazon Route 53</a> is a scalable and highly available Domain Name System (DNS) service
+   </td>
+  </tr>
+  <tr>
+   <td>EC2
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/ec2">Amazon EC2</a> provides Secure and resizable compute capacity to support virtually any workload
+   </td>
+  </tr>
+  <tr>
+   <td>Cognito
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/cognito">Amazon Cognito</a> provides Simple and Secure User Sign-Up, Sign-In, and Access Control
+   </td>
+  </tr>
+  <tr>
+   <td>S3
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/s3">Amazon S3</a> - Object storage built to retrieve any amount of data from anywhere
+   </td>
+  </tr>
+  <tr>
+   <td>API Gateway
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/api-gateway">Amazon Api Gateway</a> for create, maintain, and secure APIs at any scale
+   </td>
+  </tr>
+  <tr>
+   <td>SNS
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/sns">Amazon SNS</a> for Fully managed pub/sub messaging, SMS, email, and mobile push notifications
+   </td>
+  </tr>
+  <tr>
+   <td>MSK
+   </td>
+   <td>AWS
+   </td>
+   <td>Securely stream data with a fully managed, highly available <a href="https://aws.amazon.com/msk">Apache Kafka service</a>
+   </td>
+  </tr>
+  <tr>
+   <td>DynamoDB
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/dynamodb">Amazon DynamoDB</a> - fast, flexible NoSQL database service for single-digit millisecond performance at any scale
+   </td>
+  </tr>
+  <tr>
+   <td>RDS
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/rds/">Amazon RDS</a> - Set up, operate, and scale a relational database in the cloud with just a few clicks
+   </td>
+  </tr>
+  <tr>
+   <td>DataDog
+   </td>
+   <td>DataDog
+   </td>
+   <td><a href="https://www.datadoghq.com/">Datadog</a> is an observability service for cloud-scale applications, providing monitoring of servers, databases, tools, and services, through a SaaS-based data analytics platform
+   </td>
+  </tr>
+  <tr>
+   <td>CloudFormation
+   </td>
+   <td>AWS
+   </td>
+   <td><a href="https://aws.amazon.com/cloudformation">Amazon CloudFormation</a> helps speed up cloud provisioning with infrastructure as code
+   </td>
+  </tr>
+</table>
 
 
 # Security
